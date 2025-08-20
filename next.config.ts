@@ -5,3 +5,9 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+module.exports = {
+    images: {
+        remotePatterns: [new URL('https://svhsddzfhdfuehbaasbl.supabase.co/storage/v1/object/public/tmp-images/**')],
+    },
+}
