@@ -19,10 +19,17 @@ export function Hero() {
 
     return (
         <section
-            className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
-            <div className="absolute inset-0 bg-black/20"></div>
+            className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100"
+            style={{
+                backgroundImage: "url('/hill-valley-hero.png')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
+            <div className="absolute inset-0 bg-black/40"></div>
 
-            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-slate-900">
+            <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
                 <motion.div
                     initial={{opacity: 0, y: 30}}
                     animate={{opacity: 1, y: 0}}
@@ -31,7 +38,7 @@ export function Hero() {
                     <h1 className="text-4xl md:text-6xl font-bold mb-4">
                         {t.hero.title}
                     </h1>
-                    <h2 className="text-xl md:text-2xl text-slate-600 mb-6">
+                    <h2 className="text-xl md:text-2xl text-white/90 mb-6">
                         {t.hero.subtitle}
                     </h2>
                     <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
@@ -79,8 +86,9 @@ export function Hero() {
                 >
                     <Button
                         size="lg"
+                        variant="default"
                         onClick={() => scrollToSection('visit')}
-                        className="bg-[#e10600] hover:bg-[#c40500] text-white px-8 py-3 text-lg"
+                        className="bg-[#e10600] hover:bg-[#c40500] text-white px-8 py-3 text-lg cursor-pointer"
                     >
                         {t.hero.cta.book_visit}
                     </Button>
@@ -88,7 +96,7 @@ export function Hero() {
                         size="lg"
                         variant="outline"
                         onClick={() => scrollToSection('dossier')}
-                        className="px-8 py-3 text-lg border-2 border-slate-300 hover:bg-slate-50"
+                        className="px-8 py-3 text-lg text-foreground border-2 border-slate-300 hover:bg-slate-50/90 cursor-pointer"
                     >
                         {t.hero.cta.how_to_apply}
                     </Button>
