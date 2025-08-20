@@ -1,13 +1,16 @@
-import type { NextConfig } from "next";
+import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+    /* config options here */
 };
 
 export default nextConfig;
 
 module.exports = {
     images: {
-        remotePatterns: [new URL('https://svhsddzfhdfuehbaasbl.supabase.co/storage/v1/object/public/tmp-images/**')],
+        remotePatterns: [
+            new URL('https://svhsddzfhdfuehbaasbl.supabase.co/storage/v1/object/public/tmp-images/**'),
+            new URL('https://images.pexels.com/photos/**'),
+        ],
     },
 }
