@@ -38,7 +38,7 @@ export function Location() {
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2738.8264!2d6.6226!3d46.5197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c2e2e8b7d7d7d%3A0x7d7d7d7d7d7d7d7d!2sChemin%20de%20la%20Colline%204%2C%201007%20Lausanne%2C%20Switzerland!5e0!3m2!1sen!2s!4v1234567890"
               width="100%"
-              height="400"
+              height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
