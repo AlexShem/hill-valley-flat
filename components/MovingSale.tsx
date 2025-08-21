@@ -356,7 +356,7 @@ export function MovingSale() {
                                                     src={item.images[0]}
                                                     alt={item.title}
                                                     fill
-                                                    className="object-cover rounded-t-lg"
+                                                    className="object-contain rounded-t-lg"
                                                     loading="lazy"
                                                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
                                                 />

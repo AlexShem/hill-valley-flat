@@ -124,5 +124,12 @@
 
     body {
         @apply bg-background text-foreground;
+        /* Prevent horizontal scroll on mobile */
+        overflow-x: hidden;
+    }
+
+    html {
+        /* Ensure no horizontal overflow at root level */
+        overflow-x: hidden;
     }
 }

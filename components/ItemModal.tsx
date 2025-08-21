@@ -61,7 +61,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
             <DialogContent
-                className="max-w-sm sm:max-w-2xl lg:max-w-6xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6">
+                className="max-w-[85vw] sm:max-w-2xl lg:max-w-6xl max-h-[80vh] sm:max-h-[90vh] overflow-y-auto p-3 sm:p-6 m-2 sm:m-0">
                 <DialogHeader className="relative">
                     <DialogTitle className="flex items-center justify-between text-base sm:text-lg pr-8">
                         <span className={item.status === 'sold' ? 'line-through' : ''}>
@@ -73,13 +73,13 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                     </DialogTitle>
                 </DialogHeader>
 
-                <div className="grid lg:grid-cols-2 gap-4 lg:gap-8">
+                <div className="grid lg:grid-cols-2 gap-3 lg:gap-8">
                     {/* Image Gallery */}
                     {item.images && item.images.length > 0 && (
                         <div className="relative">
                             {/* Main Image Container */}
                             <div
-                                className="relative aspect-square sm:aspect-[4/3] lg:aspect-square bg-gray-100 rounded-lg overflow-hidden">
+                                className="relative aspect-[16/9] sm:aspect-[4/3] bg-background rounded-lg overflow-hidden">
                                 <Image
                                     src={item.images[currentImageIndex]}
                                     alt={`${item.title} - Image ${currentImageIndex + 1}`}
@@ -123,9 +123,10 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                             {/* Thumbnail Gallery */}
                             {item.images.length > 1 && (
                                 <div
-                                    className="mt-3 sm:mt-4 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 xl:grid-cols-6 gap-2">
+                                    className="mt-2 sm:mt-4 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-4 xl:grid-cols-6 gap-1 sm:gap-2">
                                     {item.images.map((image, index) => (
-                                        <button
+                                        <Button
+                                            variant="ghost"
                                             key={index}
                                             onClick={() => setCurrentImageIndex(index)}
                                             className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
@@ -141,7 +142,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                                                 className="object-cover"
                                                 sizes="(max-width: 640px) 20vw, (max-width: 1024px) 12vw, 8vw"
                                             />
-                                        </button>
+                                        </Button>
                                     ))}
                                 </div>
                             )}
@@ -149,40 +150,40 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                     )}
 
                     {/* Item Details */}
-                    <div className="space-y-4 lg:space-y-6">
+                    <div className="space-y-3 lg:space-y-6">
                         {/* Price Section */}
-                        <div className="border-b pb-3 lg:pb-4">
+                        <div className="border-b pb-2 lg:pb-4">
                             <div className="flex items-baseline gap-2 lg:gap-3">
-                <span
-                    className={`text-2xl lg:text-3xl font-bold ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
-                  CHF {item.ask_price_chf.toFixed(2)}
-                </span>
+                                <span
+                                    className={`text-xl lg:text-3xl font-bold ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
+                                CHF {item.ask_price_chf.toFixed(2)}
+                                </span>
                                 {item.original_price_chf && (
-                                    <span className="text-base lg:text-lg text-gray-500 line-through">
-                    CHF {item.original_price_chf.toFixed(2)}
-                  </span>
+                                    <span
+                                        className="text-sm lg:text-lg text-gray-500 line-through">CHF {item.original_price_chf.toFixed(2)}
+                                    </span>
                                 )}
                             </div>
                             {item.original_price_chf && (
                                 <div className="mt-1">
-                  <span className="text-sm text-green-600 font-medium">
-                    Save CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}
-                      ({Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}% off)
-                  </span>
+                                    <span className="text-xs sm:text-sm text-green-600 font-medium">
+                                    Save CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}
+                                        ({Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}% off)
+                                    </span>
                                 </div>
                             )}
                         </div>
 
                         {/* Basic Information */}
-                        <div className="space-y-3">
-                            <div className="flex flex-wrap gap-2">
+                        <div className="space-y-2 sm:space-y-3">
+                            <div className="flex flex-wrap gap-1 sm:gap-2">
                                 {getConditionBadge(item.condition)}
-                                <Badge variant="outline">{item.category}</Badge>
-                                {item.brand && <Badge variant="outline">{item.brand}</Badge>}
+                                <Badge variant="outline" className="text-xs">{item.category}</Badge>
+                                {item.brand && <Badge variant="outline" className="text-xs">{item.brand}</Badge>}
                             </div>
 
                             {/* Details Grid */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-3 text-sm">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 lg:gap-3 text-xs sm:text-sm">
                                 {item.dimensions_cm && (
                                     <div>
                                         <span className="font-medium text-gray-700">Dimensions:</span>
@@ -213,16 +214,16 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                         {/* Notes */}
                         {item.notes && (
                             <div>
-                                <h4 className="font-medium text-gray-700 mb-2">Notes:</h4>
-                                <p className="text-gray-600 text-sm leading-relaxed">{item.notes}</p>
+                                <h4 className="font-medium text-gray-700 mb-1 sm:mb-2 text-sm">Notes:</h4>
+                                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.notes}</p>
                             </div>
                         )}
 
                         {/* Pickup Information */}
                         {(item.pickup_window_start || item.pickup_window_end) && (
-                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 lg:p-4">
-                                <h4 className="font-medium text-blue-900 mb-2">Pickup Window:</h4>
-                                <div className="text-sm text-blue-800">
+                            <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 lg:p-4">
+                                <h4 className="font-medium text-blue-900 mb-1 sm:mb-2 text-sm">Pickup Window:</h4>
+                                <div className="text-xs sm:text-sm text-blue-800">
                                     {item.pickup_window_start && (
                                         <div>Start: {new Date(item.pickup_window_start).toLocaleString()}</div>
                                     )}
@@ -241,9 +242,9 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                                         href={item.receipt_url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2"
+                                        className="inline-flex items-center gap-2 text-xs sm:text-sm"
                                     >
-                                        <ExternalLink size={16}/>
+                                        <ExternalLink size={14}/>
                                         View Original Receipt
                                     </a>
                                 </Button>
@@ -252,13 +253,14 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
 
                         {/* Status Message */}
                         {item.status === 'sold' && (
-                            <div className="bg-red-50 border border-red-200 rounded-lg p-3 lg:p-4">
-                                <p className="text-red-800 font-medium">This item has been sold.</p>
+                            <div className="bg-red-50 border border-red-200 rounded-lg p-2 sm:p-3 lg:p-4">
+                                <p className="text-red-800 font-medium text-xs sm:text-sm">This item has been sold.</p>
                             </div>
                         )}
                         {item.status === 'reserved' && (
-                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 lg:p-4">
-                                <p className="text-yellow-800 font-medium">This item is currently reserved.</p>
+                            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2 sm:p-3 lg:p-4">
+                                <p className="text-yellow-800 font-medium text-xs sm:text-sm">This item is currently
+                                    reserved.</p>
                             </div>
                         )}
                     </div>
