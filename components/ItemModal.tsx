@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {Dialog, DialogContent, DialogHeader, DialogTitle} from '@/components/ui/dialog';
 import {Badge} from '@/components/ui/badge';
 import {Button} from '@/components/ui/button';
-import {ChevronLeft, ChevronRight, X, ExternalLink} from 'lucide-react';
+import {ChevronLeft, ChevronRight, ExternalLink} from 'lucide-react';
 import {Item, ItemStatus, ItemCondition} from '@/lib/supabase';
 import {useLanguage} from '@/components/LanguageProvider';
 import Image from 'next/image';
