@@ -52,7 +52,8 @@ export const translations = {
                 category: 'Category',
                 status: 'Status',
                 condition: 'Condition',
-                all: 'All'
+                all: 'All',
+                sort: 'Sort'
             },
             sort: {
                 price_asc: 'Price: Low to High',
@@ -245,7 +246,8 @@ export const translations = {
                 category: 'Catégorie',
                 status: 'Statut',
                 condition: 'État',
-                all: 'Tous'
+                all: 'Tous',
+                sort: 'Trier'
             },
             sort: {
                 price_asc: 'Prix: du plus bas au plus élevé',
@@ -438,7 +440,8 @@ export const translations = {
                 category: 'Категория',
                 status: 'Статус',
                 condition: 'Состояние',
-                all: 'Все'
+                all: 'Все',
+                sort: 'Сортировать'
             },
             sort: {
                 price_asc: 'Цена: по возрастанию',

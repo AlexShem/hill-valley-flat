@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 import {motion} from 'framer-motion';
 import {Search, Eye} from 'lucide-react';
 import {Button} from '@/components/ui/button';
@@ -37,12 +37,19 @@ export function MovingSale() {
     const [sortBy, setSortBy] = useState<SortOption>('newest');
     const [selectedItem, setSelectedItem] = useState<Item | null>(null);
 
+    // Add ref to track component mount state
+    const isMountedRef = useRef(true);
+    const abortControllerRef = useRef<AbortController | null>(null);
+
     const {ref, inView} = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
 
     const filterAndSortItems = useCallback((): void => {
+        // Check if component is still mounted before state updates
+        if (!isMountedRef.current) return;
+
         const filtered = items.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 (item.brand?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
@@ -70,6 +77,17 @@ export function MovingSale() {
         setFilteredItems(filtered);
     }, [items, searchTerm, categoryFilter, statusFilter, conditionFilter, sortBy]);
 
+    // Cleanup effect
+    useEffect(() => {
+        return () => {
+            isMountedRef.current = false;
+            // Cancel any ongoing requests
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+        };
+    }, []);
+
     useEffect(() => {
         fetchItems();
     }, []);
@@ -79,14 +97,30 @@ export function MovingSale() {
     }, [filterAndSortItems]);
 
     const fetchItems = async (): Promise<void> => {
+        // Cancel previous request if it exists
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+
+        // Create new AbortController for this request
+        abortControllerRef.current = new AbortController();
+        const {signal} = abortControllerRef.current;
+
         try {
+            // Check if component is still mounted before starting
+            if (!isMountedRef.current) return;
+
             setLoading(true);
             setError(null);
 
             const {data, error: fetchError} = await supabase
                 .from('items')
                 .select('*')
-                .order('order_index', {ascending: true});
+                .order('order_index', {ascending: true})
+                .abortSignal(signal); // Add abort signal to Supabase query
+
+            // Check if component is still mounted before updating state
+            if (!isMountedRef.current) return;
 
             if (fetchError) {
                 console.error('Error fetching items:', fetchError);
@@ -96,10 +130,16 @@ export function MovingSale() {
 
             setItems(data || []);
         } catch (err) {
+            // Check if component is still mounted and error is not from abort
+            if (!isMountedRef.current || signal.aborted) return;
+
             console.error('Unexpected error fetching items:', err);
             setError('An unexpected error occurred. Please try again.');
         } finally {
-            setLoading(false);
+            // Check if component is still mounted before updating loading state
+            if (isMountedRef.current) {
+                setLoading(false);
+            }
         }
     };
 
@@ -107,7 +147,7 @@ export function MovingSale() {
         const variants = {
             available: 'default',
             reserved: 'secondary',
-            sold: 'outline'
+            sold: 'destructive',
         } as const;
 
         return (
@@ -208,8 +248,13 @@ export function MovingSale() {
 
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t.sale.filters.category}/>
+                            <SelectTrigger className="min-w-[140px]">
+                                <SelectValue>
+                                    <span className="text-sm text-gray-600">{t.sale.filters.category}:</span>{' '}
+                                    <span className="font-medium">
+                                        {categoryFilter === 'all' ? t.sale.filters.all : categoryFilter}
+                                    </span>
+                                </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -224,8 +269,13 @@ export function MovingSale() {
 
                         <Select value={statusFilter}
                                 onValueChange={(value) => setStatusFilter(value as ItemStatus | 'all')}>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t.sale.filters.status}/>
+                            <SelectTrigger className="min-w-[140px]">
+                                <SelectValue>
+                                    <span className="text-sm text-gray-600">{t.sale.filters.status}:</span>{' '}
+                                    <span className="font-medium">
+                                        {statusFilter === 'all' ? t.sale.filters.all : t.sale.status[statusFilter as ItemStatus]}
+                                    </span>
+                                </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -240,8 +290,13 @@ export function MovingSale() {
 
                         <Select value={conditionFilter}
                                 onValueChange={(value) => setConditionFilter(value as ItemCondition | 'all')}>
-                            <SelectTrigger>
-                                <SelectValue placeholder={t.sale.filters.condition}/>
+                            <SelectTrigger className="min-w-[140px]">
+                                <SelectValue>
+                                    <span className="text-sm text-gray-600">{t.sale.filters.condition}:</span>{' '}
+                                    <span className="font-medium">
+                                        {conditionFilter === 'all' ? t.sale.filters.all : t.sale.condition[conditionFilter as ItemCondition]}
+                                    </span>
+                                </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
@@ -256,12 +311,15 @@ export function MovingSale() {
                         </Select>
 
                         <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Sort by"/>
+                            <SelectTrigger className="min-w-[140px]">
+                                <SelectValue>
+                                    <span className="text-sm text-gray-600">{t.sale.filters.sort}:</span>{' '}
+                                    <span className="font-medium">{t.sale.sort[sortBy]}</span>
+                                </SelectValue>
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectGroup>
-                                    <SelectLabel>Sort by</SelectLabel>
+                                    <SelectLabel>{t.sale.filters.sort}</SelectLabel>
                                     <SelectItem value="newest">{t.sale.sort.newest}</SelectItem>
                                     <SelectItem value="price_asc">{t.sale.sort.price_asc}</SelectItem>
                                     <SelectItem value="price_desc">{t.sale.sort.price_desc}</SelectItem>
@@ -287,7 +345,7 @@ export function MovingSale() {
                             >
                                 <Card
                                     className={`h-full cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
-                                        item.status === 'sold' ? 'opacity-75' : ''
+                                        item.status === 'sold' ? 'opacity-50' : ''
                                     }`}
                                     onClick={() => setSelectedItem(item)}
                                 >
