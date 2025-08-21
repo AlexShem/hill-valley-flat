@@ -23,7 +23,8 @@ export const translations = {
             features: {
                 laundry: 'Laundry room',
                 cellar: 'Storage cellar',
-                lift: 'Elevator'
+                lift: 'Elevator',
+                parking: 'Parking',
             },
             cta: {
                 book_visit: 'Book a Visit',
@@ -143,11 +144,19 @@ export const translations = {
                 },
                 {
                     question: 'Have you made any modifications?',
-                    answer: 'Only minor, fully reversible modifications such as wall hooks and decorative elements.'
+                    answer: 'One minor change - towel hooks in the bathroom.'
                 },
                 {
                     question: 'Are pets allowed?',
-                    answer: 'Please confirm pet policies directly with Baloise Immobilier during your application.'
+                    answer: 'Pets are allowed.'
+                },
+                {
+                    question: 'Are neighbours good?',
+                    answer: 'Yes, during my stay, I have never experienced any troubles with neighbours at all.'
+                },
+                {
+                    question: 'What about laundry?',
+                    answer: 'You can use common laundry and drying machines in the building, or install your own setup in the bathroom.'
                 },
                 {
                     question: 'Can I purchase items without taking the apartment?',
@@ -217,7 +226,8 @@ export const translations = {
             features: {
                 laundry: 'Buanderie',
                 cellar: 'Cave de stockage',
-                lift: 'Ascenseur'
+                lift: 'Ascenseur',
+                parking: 'Parking',
             },
             cta: {
                 book_visit: 'Réserver une visite',
@@ -337,11 +347,19 @@ export const translations = {
                 },
                 {
                     question: 'Avez-vous fait des modifications?',
-                    answer: 'Seulement des modifications mineures et entièrement réversibles comme des crochets muraux et des éléments décoratifs.'
+                    answer: 'Un seul changement mineur - des crochets à serviettes dans la salle de bain.'
                 },
                 {
                     question: 'Les animaux sont-ils autorisés?',
-                    answer: 'Veuillez confirmer la politique concernant les animaux directement avec Baloise Immobilier lors de votre candidature.'
+                    answer: 'Les animaux domestiques sont autorisés.'
+                },
+                {
+                    question: 'Les voisins sont-ils bien?',
+                    answer: 'Oui, pendant mon séjour, je n\'ai jamais eu de problèmes avec les voisins.'
+                },
+                {
+                    question: 'Qu\'en est-il de la lessive?',
+                    answer: 'Vous pouvez utiliser les machines à laver et sécher communes dans l\'immeuble, ou installer votre propre installation dans la salle de bain.'
                 },
                 {
                     question: 'Puis-je acheter des objets sans reprendre l\'appartement?',
@@ -411,7 +429,8 @@ export const translations = {
             features: {
                 laundry: 'Прачечная',
                 cellar: 'Подвал',
-                lift: 'Лифт'
+                lift: 'Лифт',
+                parking: 'Парковка'
             },
             cta: {
                 book_visit: 'Забронировать визит',
@@ -531,11 +550,19 @@ export const translations = {
                 },
                 {
                     question: 'Делали ли вы какие-либо изменения?',
-                    answer: 'Только небольшие, обратимые изменения, такие как настенные крючки и декоративные элементы.'
+                    answer: 'Одно небольшое изменение - крючки для полотенец в ванной.'
                 },
                 {
                     question: 'Разрешены ли домашние животные?',
-                    answer: 'Пожалуйста, уточните у Baloise Immobilier политику по домашним животным.'
+                    answer: 'Домашние животные разрешены.'
+                },
+                {
+                    question: 'Хорошие ли соседи?',
+                    answer: 'Да, за время моего проживания у меня никогда не было проблем с соседями.'
+                },
+                {
+                    question: 'Как насчёт стирки?',
+                    answer: 'Вы можете использовать общие стиральные и сушильные машины в здании, или установить свою собственную систему в ванной.'
                 },
                 {
                     question: 'Могу ли я купить мебель, не беря квартиру?',
