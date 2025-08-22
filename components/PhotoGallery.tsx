@@ -26,13 +26,10 @@ const currentPhotos: Photo[] = [
 ];
 
 const emptyPhotos: Photo[] = [
-    {
-        src: 'https://images.pexels.com/photos/1571461/pexels-photo-1571461.jpeg',
-        caption: 'Empty living room ready for new tenant'
-    },
-    {src: 'https://images.pexels.com/photos/1571469/pexels-photo-1571469.jpeg', caption: 'Kitchen on move-out'},
-    {src: 'https://images.pexels.com/photos/1571462/pexels-photo-1571462.jpeg', caption: 'Empty bedroom'},
-    {src: 'https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg', caption: 'Bathroom'}
+    {src: '/move-in-living-room.jpg', caption: 'Empty living room'},
+    {src: '/move-in-kitchen.jpg', caption: 'Empty kitchen'},
+    {src: '/move-in-bedroom.jpg', caption: 'Empty bedroom'},
+    {src: '/move-in-bathroom.jpg', caption: 'Bathroom'}
 ];
 
 export function PhotoGallery() {
