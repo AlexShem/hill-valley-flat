@@ -13,16 +13,10 @@ interface Photo {
 }
 
 const currentPhotos: Photo[] = [
-    {
-        src: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg',
-        caption: 'Living room with natural light'
-    },
-    {
-        src: 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg',
-        caption: 'Modern kitchen with dining area'
-    },
-    {src: 'https://images.pexels.com/photos/1571467/pexels-photo-1571467.jpeg', caption: 'Comfortable bedroom'},
-    {src: 'https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg', caption: 'Study corner'}
+    {src: '/agency-general.jpg', caption: 'Overview of the apartment'},
+    {src: '/agency-living-room.jpg', caption: 'Living room with natural light'},
+    {src: '/agency-kitchen.jpg', caption: 'Modern kitchen with dining area'},
+    {src: '/agency-bedroom.jpg', caption: 'Comfortable bedroom'},
 ];
 
 const emptyPhotos: Photo[] = [
@@ -79,7 +73,7 @@ export function PhotoGallery() {
                             variant={activeGallery === 'current' ? 'default' : 'outline'}
                             onClick={() => setActiveGallery('current')}
                         >
-                            Current Setup
+                            Agency Setup
                         </Button>
                         <Button
                             variant={activeGallery === 'empty' ? 'default' : 'outline'}
