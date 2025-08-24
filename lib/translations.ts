@@ -190,7 +190,7 @@ export const translations = {
         footer: {
             languages: 'Languages',
             disclaimer: 'Information provided is non-contractual. No personal data collected on this site.',
-            privacy: 'Privacy: Only essential analytics, no personal tracking or cookies.'
+            privacy: 'Privacy: No personal tracking or cookies.'
         },
 
         // Mobile CTA
@@ -393,7 +393,7 @@ export const translations = {
         footer: {
             languages: 'Langues',
             disclaimer: 'Les informations fournies sont non contractuelles. Aucune donnée personnelle collectée sur ce site.',
-            privacy: 'Confidentialité: Seulement des analyses essentielles, aucun suivi personnel ni cookies.'
+            privacy: 'Confidentialité: Aucun suivi personnel ni cookies.'
         },
 
         // Mobile CTA
@@ -596,7 +596,7 @@ export const translations = {
         footer: {
             languages: 'Языки',
             disclaimer: 'Информация не является договорной. Персональные данные не собираются.',
-            privacy: 'Конфиденциальность: Никакого отслеживания кроме базовой аналитики.'
+            privacy: 'Конфиденциальность: Никакого отслеживания.'
         },
 
         // Mobile CTA

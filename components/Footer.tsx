@@ -3,6 +3,9 @@
 import React from 'react';
 import {LanguageToggle} from '@/components/LanguageToggle';
 import {useLanguage} from '@/components/LanguageProvider';
+import {ExternalLink} from "lucide-react";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 export function Footer() {
     const {t} = useLanguage();
@@ -14,6 +17,20 @@ export function Footer() {
                     <div>
                         <h3 className="text-xl font-semibold mb-2">Hill Valley, Lausanne</h3>
                         <p className="text-gray-400">2.5-room flat • Lease takeover & Moving sale</p>
+                        <p className="text-gray-400 mt-2 flex items-center gap-1">
+                            Built by
+                            <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-blue-300 underline">
+                                <Link
+                                    href="https://alexhem.dev"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1"
+                                >
+                                    Aleksandr Shemendyuk
+                                    <ExternalLink size={14} className="inline"/>
+                                </Link>
+                            </Button>
+                        </p>
                     </div>
 
                     <LanguageToggle/>
