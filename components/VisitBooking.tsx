@@ -14,7 +14,7 @@ export function VisitBooking() {
 
     return (
         <section id="visit" ref={ref} className="py-16 bg-white">
-            <div className="max-w-4xl mx-auto px-4">
+            <div className="max-w-6xl mx-auto px-4">
                 <motion.div
                     initial={{opacity: 0, y: 30}}
                     animate={inView ? {opacity: 1, y: 0} : {}}
@@ -31,26 +31,19 @@ export function VisitBooking() {
                     initial={{opacity: 0, y: 20}}
                     animate={inView ? {opacity: 1, y: 0} : {}}
                     transition={{duration: 0.8, delay: 0.2}}
-                    className="bg-gray-50 rounded-2xl p-8"
+                    className="bg-gray-50 rounded-2xl p-4 md:p-8"
                 >
-                    {/* Calendly embed placeholder - replace with actual Calendly link */}
-                    <div
-                        className="w-full h-96 bg-white rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
-                        <div className="text-center">
-                            <p className="text-gray-600 text-lg mb-4">Calendly Booking Widget</p>
-                            <p className="text-sm text-gray-500">
-                                Replace this placeholder with your actual Calendly embed code
-                            </p>
-                            <div className="mt-4">
-                                <iframe
-                                    src="https://calendly.com/your-calendly-link"
-                                    width="100%"
-                                    height="300"
-                                    style={{border: 0}}
-                                    title="Book a visit"
-                                />
-                            </div>
-                        </div>
+                    {/* Calendly embed - responsive sizing */}
+                    <div className="w-full bg-white rounded-lg overflow-hidden shadow-sm">
+                        <iframe
+                            src="https://calendly.com/alex-shemendyuk/hill-valley-viewing"
+                            width="100%"
+                            height="700"
+                            className="min-h-[500px] md:min-h-[700px]"
+                            style={{border: 0}}
+                            title="Book a visit"
+                            loading="lazy"
+                        />
                     </div>
                 </motion.div>
             </div>
