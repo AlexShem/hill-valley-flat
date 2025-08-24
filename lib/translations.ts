@@ -36,12 +36,12 @@ export const translations = {
         why: {
             title: 'Why choose this apartment',
             points: [
-                '5 minutes walk to M2 metro',
-                'Quiet study environment',
-                'Abundant natural light',
-                'Ample storage throughout',
-                'Excellent transport links',
-                'Shopping & amenities nearby'
+                '3-minute walk to M1 metro',
+                'Fast access to metro, city centre, UNIL/EPFL & highway',
+                'Denner & Migros supermarkets steps away',
+                'Quiet, sheltered residential setting',
+                'Modern 2022 building (energy-efficient)',
+                'Light-filled rooms with smart storage'
             ]
         },
 
@@ -239,12 +239,12 @@ export const translations = {
         why: {
             title: 'Pourquoi cet appartement',
             points: [
-                '5 minutes à pied du métro M2',
-                'Environnement calme pour l\'étude',
-                'Lumière naturelle abondante',
-                'Espaces de rangement spacieux',
-                'Excellentes liaisons de transport',
-                'Commerces et services à proximité'
+                'À 3 min à pied du métro M1',
+                'Accès rapide au métro, centre-ville, UNIL/EPFL et entrée d\'autoroute',
+                'Denner et Migros à deux pas',
+                'Quartier calme et protégé',
+                'Immeuble moderne (construction 2022, économe en énergie)',
+                'Pièces lumineuses avec rangements optimisés'
             ]
         },
 
@@ -442,12 +442,12 @@ export const translations = {
         why: {
             title: 'Почему эта квартира',
             points: [
-                '5 минут до метро M2',
-                'Тихая среда для учёбы',
-                'Обильный естественный свет',
-                'Просторные места для хранения',
-                'Отличное транспортное сообщение',
-                'Рядом с магазинами и удобствами'
+                '3 минуты пешком до метро M1',
+                'Быстрый доступ к метро, центру, UNIL/EPFL и въезду на автостраду',
+                'Супермаркеты Denner и Migros рядом',
+                'Тихое, защищённое жилое окружение',
+                'Современное здание 2022 года (энергоэффективное)',
+                'Светлые помещения и продуманное хранение'
             ]
         },
 
