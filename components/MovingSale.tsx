@@ -16,16 +16,27 @@ import {
     SelectTrigger,
     SelectValue
 } from '@/components/ui/select';
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
 import {useLanguage} from '@/components/LanguageProvider';
 import {supabase, Item, ItemStatus, ItemCondition} from '@/lib/supabase';
 import {useInView} from 'react-intersection-observer';
 import {ItemModal} from '@/components/ItemModal';
+import {useIsMobile} from '@/hooks/use-mobile';
 import Image from 'next/image';
 
 type SortOption = 'newest' | 'price_asc' | 'price_desc';
 
 export function MovingSale() {
     const {t} = useLanguage();
+    const isMobile = useIsMobile();
     const [items, setItems] = useState<Item[]>([]);
     const [filteredItems, setFilteredItems] = useState<Item[]>([]);
     const [loading, setLoading] = useState(true);
@@ -36,6 +47,7 @@ export function MovingSale() {
     const [conditionFilter, setConditionFilter] = useState<ItemCondition | 'all'>('all');
     const [sortBy, setSortBy] = useState<SortOption>('newest');
     const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
     // Add ref to track component mount state
     const isMountedRef = useRef(true);
@@ -46,56 +58,23 @@ export function MovingSale() {
         threshold: 0.1,
     });
 
-    const filterAndSortItems = useCallback((): void => {
-        // Check if component is still mounted before state updates
-        if (!isMountedRef.current) return;
+    // Calculate items per page based on screen size
+    const itemsPerPage = isMobile ? 4 : 8; // 2x2 on mobile, 2x4 on desktop
 
-        const filtered = items.filter(item => {
-            const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                (item.brand?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
-                item.category.toLowerCase().includes(searchTerm.toLowerCase());
-            const matchesCategory = categoryFilter === 'all' || item.category === categoryFilter;
-            const matchesStatus = statusFilter === 'all' || item.status === statusFilter;
-            const matchesCondition = conditionFilter === 'all' || item.condition === conditionFilter;
+    // Calculate pagination
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedItems = filteredItems.slice(startIndex, endIndex);
 
-            return matchesSearch && matchesCategory && matchesStatus && matchesCondition;
-        });
-
-        // Sort items with proper type safety
-        filtered.sort((a, b) => {
-            switch (sortBy) {
-                case 'price_asc':
-                    return a.ask_price_chf - b.ask_price_chf;
-                case 'price_desc':
-                    return b.ask_price_chf - a.ask_price_chf;
-                case 'newest':
-                default:
-                    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-            }
-        });
-
-        setFilteredItems(filtered);
-    }, [items, searchTerm, categoryFilter, statusFilter, conditionFilter, sortBy]);
-
-    // Cleanup effect
+    // Adjust current page when screen size changes and current page becomes invalid
     useEffect(() => {
-        return () => {
-            isMountedRef.current = false;
-            // Cancel any ongoing requests
-            if (abortControllerRef.current) {
-                abortControllerRef.current.abort();
-            }
-        };
-    }, []);
+        if (totalPages > 0 && currentPage > totalPages) {
+            setCurrentPage(Math.max(1, totalPages));
+        }
+    }, [totalPages, currentPage]);
 
-    useEffect(() => {
-        fetchItems();
-    }, []);
-
-    useEffect(() => {
-        filterAndSortItems();
-    }, [filterAndSortItems]);
-
+    // Define functions before useEffect hooks
     const fetchItems = async (): Promise<void> => {
         // Cancel previous request if it exists
         if (abortControllerRef.current) {
@@ -143,6 +122,61 @@ export function MovingSale() {
         }
     };
 
+    const filterAndSortItems = useCallback((): void => {
+        // Check if component is still mounted before state updates
+        if (!isMountedRef.current) return;
+
+        const filtered = items.filter(item => {
+            const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                (item.brand?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
+                item.category.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesCategory = categoryFilter === 'all' || item.category === categoryFilter;
+            const matchesStatus = statusFilter === 'all' || item.status === statusFilter;
+            const matchesCondition = conditionFilter === 'all' || item.condition === conditionFilter;
+
+            return matchesSearch && matchesCategory && matchesStatus && matchesCondition;
+        });
+
+        // Sort items with proper type safety
+        filtered.sort((a, b) => {
+            switch (sortBy) {
+                case 'price_asc':
+                    return a.ask_price_chf - b.ask_price_chf;
+                case 'price_desc':
+                    return b.ask_price_chf - a.ask_price_chf;
+                case 'newest':
+                default:
+                    return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+            }
+        });
+
+        setFilteredItems(filtered);
+    }, [items, searchTerm, categoryFilter, statusFilter, conditionFilter, sortBy]);
+
+    // Reset to first page when filters change
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm, categoryFilter, statusFilter, conditionFilter, sortBy]);
+
+    // Cleanup effect
+    useEffect(() => {
+        return () => {
+            isMountedRef.current = false;
+            // Cancel any ongoing requests
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        fetchItems();
+    }, []);
+
+    useEffect(() => {
+        filterAndSortItems();
+    }, [filterAndSortItems]);
+
     const getStatusBadge = (status: ItemStatus) => {
         const variants = {
             available: 'default',
@@ -167,6 +201,147 @@ export function MovingSale() {
 
     // Get unique categories with proper type safety
     const categories = Array.from(new Set(items.map(item => item.category)));
+
+    // Add ref for items grid to enable scrolling
+    const itemsGridRef = useRef<HTMLDivElement>(null);
+
+    // Smooth scroll to items grid when page changes
+    const scrollToItemsGrid = useCallback(() => {
+        if (itemsGridRef.current) {
+            const yOffset = -80; // Offset to account for any fixed headers
+            const element = itemsGridRef.current;
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+            });
+        }
+    }, []);
+
+    // Handle page navigation with smooth scroll
+    const handlePageChange = useCallback((newPage: number) => {
+        setCurrentPage(newPage);
+        // Small delay to ensure the new content is rendered before scrolling
+        setTimeout(() => {
+            scrollToItemsGrid();
+        }, 100);
+    }, [scrollToItemsGrid]);
+
+    // Generate pagination links
+    const generatePaginationLinks = () => {
+        const links = [];
+
+        // Previous button
+        if (currentPage > 1) {
+            links.push(
+                <PaginationItem key="prev">
+                    <PaginationPrevious
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage - 1);
+                        }}
+                    />
+                </PaginationItem>
+            );
+        }
+
+        // Page numbers
+        const maxVisiblePages = isMobile ? 3 : 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        const endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        // Adjust start page if we're near the end
+        if (endPage - startPage < maxVisiblePages - 1) {
+            startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        // First page and ellipsis
+        if (startPage > 1) {
+            links.push(
+                <PaginationItem key={1}>
+                    <PaginationLink
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(1);
+                        }}
+                        isActive={currentPage === 1}
+                    >
+                        1
+                    </PaginationLink>
+                </PaginationItem>
+            );
+            if (startPage > 2) {
+                links.push(
+                    <PaginationItem key="ellipsis1">
+                        <PaginationEllipsis/>
+                    </PaginationItem>
+                );
+            }
+        }
+
+        // Page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            links.push(
+                <PaginationItem key={i}>
+                    <PaginationLink
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(i);
+                        }}
+                        isActive={currentPage === i}
+                    >
+                        {i}
+                    </PaginationLink>
+                </PaginationItem>
+            );
+        }
+
+        // Last page and ellipsis
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                links.push(
+                    <PaginationItem key="ellipsis2">
+                        <PaginationEllipsis/>
+                    </PaginationItem>
+                );
+            }
+            links.push(
+                <PaginationItem key={totalPages}>
+                    <PaginationLink
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(totalPages);
+                        }}
+                        isActive={currentPage === totalPages}
+                    >
+                        {totalPages}
+                    </PaginationLink>
+                </PaginationItem>
+            );
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+            links.push(
+                <PaginationItem key="next">
+                    <PaginationNext
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            handlePageChange(currentPage + 1);
+                        }}
+                    />
+                </PaginationItem>
+            );
+        }
+
+        return links;
+    };
 
     if (loading) {
         return (
@@ -335,105 +510,129 @@ export function MovingSale() {
                         <p className="text-lg text-gray-600">{t.sale.empty_state}</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                        {filteredItems.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                initial={{opacity: 0, y: 20}}
-                                animate={inView ? {opacity: 1, y: 0} : {}}
-                                transition={{duration: 0.6, delay: index * 0.1}}
-                            >
-                                <Card
-                                    className={`h-full cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
-                                        item.status === 'sold' ? 'opacity-50' : ''
-                                    }`}
-                                    onClick={() => setSelectedItem(item)}
+                    <>
+                        <div ref={itemsGridRef}
+                             className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                            {paginatedItems.map((item, index) => (
+                                <motion.div
+                                    key={item.id}
+                                    initial={{opacity: 0, y: 20}}
+                                    animate={inView ? {opacity: 1, y: 0} : {}}
+                                    transition={{duration: 0.6, delay: index * 0.1}}
                                 >
-                                    <div className="relative">
-                                        {item.images && item.images.length > 0 && (
-                                            <div className="relative w-full h-40 md:h-48 lg:h-56">
-                                                <Image
-                                                    src={item.images[0]}
-                                                    alt={item.title}
-                                                    fill
-                                                    className="object-contain rounded-t-lg"
-                                                    loading="lazy"
-                                                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                                                />
+                                    <Card
+                                        className={`h-full cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
+                                            item.status === 'sold' ? 'opacity-50' : ''
+                                        }`}
+                                        onClick={() => setSelectedItem(item)}
+                                    >
+                                        <div className="relative">
+                                            {item.images && item.images.length > 0 && (
+                                                <div className="relative w-full h-40 md:h-48 lg:h-56">
+                                                    <Image
+                                                        src={item.images[0]}
+                                                        alt={item.title}
+                                                        fill
+                                                        className="object-contain rounded-t-lg"
+                                                        loading="lazy"
+                                                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="absolute top-2 left-2 flex gap-1">
+                                                {getStatusBadge(item.status)}
                                             </div>
-                                        )}
-                                        <div className="absolute top-2 left-2 flex gap-1">
-                                            {getStatusBadge(item.status)}
+                                            {item.images && item.images.length > 1 && (
+                                                <div
+                                                    className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
+                                                    +{item.images.length - 1} more
+                                                </div>
+                                            )}
                                         </div>
-                                        {item.images && item.images.length > 1 && (
-                                            <div
-                                                className="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 rounded text-xs">
-                                                +{item.images.length - 1} more
+
+                                        <CardContent className="p-3 md:p-4">
+                                            <h3 className={`font-semibold text-sm md:text-base mb-2 leading-tight line-clamp-2 ${item.status === 'sold' ? 'line-through' : ''}`}>
+                                                {item.title}
+                                            </h3>
+                                            {item.brand && (
+                                                <p className="text-xs md:text-sm text-gray-600 mb-2 font-medium">{item.brand}</p>
+                                            )}
+
+                                            <div className="flex flex-wrap gap-1 mb-3">
+                                                {getConditionBadge(item.condition)}
+                                                <Badge variant="outline" className="text-xs">{item.category}</Badge>
                                             </div>
-                                        )}
-                                    </div>
 
-                                    <CardContent className="p-3 md:p-4">
-                                        <h3 className={`font-semibold text-sm md:text-base mb-2 leading-tight line-clamp-2 ${item.status === 'sold' ? 'line-through' : ''}`}>
-                                            {item.title}
-                                        </h3>
-                                        {item.brand && (
-                                            <p className="text-xs md:text-sm text-gray-600 mb-2 font-medium">{item.brand}</p>
-                                        )}
-
-                                        <div className="flex flex-wrap gap-1 mb-3">
-                                            {getConditionBadge(item.condition)}
-                                            <Badge variant="outline" className="text-xs">{item.category}</Badge>
-                                        </div>
-
-                                        {/* Item details preview - hide on mobile for space */}
-                                        <div className="hidden md:block space-y-1 mb-3 text-xs text-gray-600">
-                                            {item.dimensions_cm && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-gray-400">Dimensions:</span>
-                                                    <span>{item.dimensions_cm}</span>
-                                                </div>
-                                            )}
-                                            {item.colour && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-gray-400">Color:</span>
-                                                    <span>{item.colour}</span>
-                                                </div>
-                                            )}
-                                            {item.weight_kg && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-gray-400">Weight:</span>
-                                                    <span>{item.weight_kg} kg</span>
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex-1">
-                                                <p className={`font-bold text-sm md:text-lg mb-1 ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
-                                                    CHF {item.ask_price_chf.toFixed(2)}
-                                                </p>
-                                                {item.original_price_chf && (
-                                                    <div className="space-y-1">
-                                                        <p className="text-xs text-gray-500 line-through">
-                                                            CHF {item.original_price_chf.toFixed(2)}
-                                                        </p>
-                                                        <p className="text-xs text-green-600 font-medium">
-                                                            Save {Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}%
-                                                        </p>
+                                            {/* Item details preview - hide on mobile for space */}
+                                            <div className="hidden md:block space-y-1 mb-3 text-xs text-gray-600">
+                                                {item.dimensions_cm && (
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-gray-400">Dimensions:</span>
+                                                        <span>{item.dimensions_cm}</span>
+                                                    </div>
+                                                )}
+                                                {item.colour && (
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-gray-400">Color:</span>
+                                                        <span>{item.colour}</span>
+                                                    </div>
+                                                )}
+                                                {item.weight_kg && (
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-gray-400">Weight:</span>
+                                                        <span>{item.weight_kg} kg</span>
                                                     </div>
                                                 )}
                                             </div>
-                                            <Button variant="ghost" size="sm"
-                                                    className="ml-2 opacity-70 hover:opacity-100 p-1 md:p-2">
-                                                <Eye size={14} className="md:w-4 md:h-4"/>
-                                            </Button>
-                                        </div>
-                                    </CardContent>
-                                </Card>
+
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex-1">
+                                                    <p className={`font-bold text-sm md:text-lg mb-1 ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
+                                                        CHF {item.ask_price_chf.toFixed(2)}
+                                                    </p>
+                                                    {item.original_price_chf && (
+                                                        <div className="space-y-1">
+                                                            <p className="text-xs text-gray-500 line-through">
+                                                                CHF {item.original_price_chf.toFixed(2)}
+                                                            </p>
+                                                            <p className="text-xs text-green-600 font-medium">
+                                                                Save {Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}%
+                                                            </p>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <Button variant="ghost" size="sm"
+                                                        className="ml-2 opacity-70 hover:opacity-100 p-1 md:p-2">
+                                                    <Eye size={14} className="md:w-4 md:h-4"/>
+                                                </Button>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <motion.div
+                                initial={{opacity: 0, y: 20}}
+                                animate={inView ? {opacity: 1, y: 0} : {}}
+                                transition={{duration: 0.6, delay: 0.4}}
+                                className="mt-8 flex flex-col items-center gap-4"
+                            >
+                                <Pagination>
+                                    <PaginationContent>
+                                        {generatePaginationLinks()}
+                                    </PaginationContent>
+                                </Pagination>
+
+                                {/* Page info */}
+                                <div className="text-sm text-gray-600">
+                                    Showing {startIndex + 1}-{Math.min(endIndex, filteredItems.length)} of {filteredItems.length} items
+                                </div>
                             </motion.div>
-                        ))}
-                    </div>
+                        )}
+                    </>
                 )}
             </div>
 
