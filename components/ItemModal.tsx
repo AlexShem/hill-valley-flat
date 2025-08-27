@@ -84,7 +84,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                                     src={item.images[currentImageIndex]}
                                     alt={`${item.title} - Image ${currentImageIndex + 1}`}
                                     fill
-                                    className="object-cover"
+                                    className="object-contain"
                                     sizes="(max-width: 640px) 90vw, (max-width: 1024px) 50vw, 40vw"
                                     priority={currentImageIndex === 0}
                                 />

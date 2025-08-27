@@ -2,7 +2,8 @@
 
 import React, {useState, useEffect, useCallback, useRef} from 'react';
 import {motion} from 'framer-motion';
-import {Search, Eye} from 'lucide-react';
+import {Search, Eye, Banknote} from 'lucide-react';
+import {Btc, Eth, Sol} from 'react-pay-icons/crypto'
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
 import {Badge} from '@/components/ui/badge';
@@ -31,6 +32,7 @@ import {useInView} from 'react-intersection-observer';
 import {ItemModal} from '@/components/ItemModal';
 import {useIsMobile} from '@/hooks/use-mobile';
 import Image from 'next/image';
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 
 type SortOption = 'newest' | 'price_asc' | 'price_desc';
 
@@ -394,11 +396,102 @@ export function MovingSale() {
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
                         {t.sale.title}
                     </h2>
-                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 max-w-2xl mx-auto">
+                    <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 max-w-2xl mx-auto mb-6">
                         <p className="text-amber-800 font-medium">
                             {t.sale.notice}
                         </p>
                     </div>
+
+                    {/* Payment Methods Banner */}
+                    <motion.div
+                        initial={{opacity: 0, y: 20}}
+                        animate={inView ? {opacity: 1, y: 0} : {}}
+                        transition={{duration: 0.6, delay: 0.3}}
+                        className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 max-w-2xl mx-auto"
+                    >
+                        <h3 className="text-sm font-semibold text-emerald-800 mb-3">
+                            {t.sale.payment_methods.title}
+                        </h3>
+                        <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap">
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Banknote size={24}/>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p>{t.sale.payment_methods.cash} - Swiss Francs (CHF)</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Image
+                                            src="/twint.svg"
+                                            width={40}
+                                            height={40}
+                                            alt="Twint"
+                                            className="rounded-lg"
+                                        />
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-sm">{t.sale.payment_methods.twint}</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Image
+                                            src="/revolut-logo-dark.svg"
+                                            width={40}
+                                            height={40}
+                                            alt="Revolut"
+                                            className="rounded-lg"
+                                        />
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-sm">{t.sale.payment_methods.revolut}</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Btc style={{width: 40, height: 40}}/>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-sm">Bitcoin</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Eth style={{width: 40, height: 40}}/>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-sm">Ethereum</p>
+                                </TooltipContent>
+                            </Tooltip>
+
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                        <Sol style={{width: 40, height: 40}}/>
+                                    </div>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                    <p className="text-sm">Solana</p>
+                                </TooltipContent>
+                            </Tooltip>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 {/* Filters */}

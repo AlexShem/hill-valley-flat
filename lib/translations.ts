@@ -48,7 +48,13 @@ export const translations = {
         // Moving Sale
         sale: {
             title: 'Moving Sale Items',
-            notice: 'Cash payment on pickup. Collection only. First come, first served.',
+            notice: 'Payment on pickup. Collection only. First come, first served.',
+            payment_methods: {
+                title: 'Accepted Payment Methods',
+                cash: 'Cash',
+                twint: 'TWINT',
+                revolut: 'Revolut'
+            },
             filters: {
                 category: 'Category',
                 status: 'Status',
@@ -251,7 +257,13 @@ export const translations = {
         // Moving Sale
         sale: {
             title: 'Objets de déménagement',
-            notice: 'Paiement en espèces lors de l\'enlèvement. Uniquement à retirer. Premier arrivé, premier servi.',
+            notice: 'Paiement à réception. Uniquement à retirer. Premier arrivé, premier servi.',
+            payment_methods: {
+                title: 'Méthodes de paiement acceptées',
+                cash: 'Espèces',
+                twint: 'TWINT',
+                revolut: 'Revolut'
+            },
             filters: {
                 category: 'Catégorie',
                 status: 'Statut',
@@ -454,7 +466,13 @@ export const translations = {
         // Moving Sale
         sale: {
             title: 'Распродажа при переезде — Вещи',
-            notice: 'Оплата лично. Только самовывоз. Кто первый пришёл, тот первый получил.',
+            notice: 'Оплата при получении. Только самовывоз. Кто первый пришёл, тот первый получил.',
+            payment_methods: {
+                title: 'Способы оплаты',
+                cash: 'Наличные',
+                twint: 'TWINT',
+                revolut: 'Revolut'
+            },
             filters: {
                 category: 'Категория',
                 status: 'Статус',
