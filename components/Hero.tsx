@@ -3,7 +3,7 @@
 import React from 'react';
 import {Button} from '@/components/ui/button';
 import {Badge} from '@/components/ui/badge';
-import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare} from 'lucide-react';
+import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, House, Building2} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useLanguage} from '@/components/LanguageProvider';
 
@@ -79,6 +79,10 @@ export function Hero() {
                     <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
                         <ParkingSquare size={16}/>
                         {t.hero.features.parking}
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
+                        <Building2 size={16}/>
+                        {t.hero.features.balcony}
                     </Badge>
                 </motion.div>
 

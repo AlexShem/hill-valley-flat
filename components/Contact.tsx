@@ -56,7 +56,7 @@ export function Contact() {
                     <Button
                         asChild
                         size="lg"
-                        className="bg-[#24a1de] hover:bg-blue-600 text-white px-8 py-4 text-lg h-auto"
+                        className="bg-[#24a1de] hover:bg-sky-600 text-white px-8 py-4 text-lg h-auto"
                     >
                         <a href={contacts.telegram} target="_blank" rel="noopener noreferrer">
                             <Send size={24} className="mr-3"/>

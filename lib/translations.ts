@@ -14,17 +14,18 @@ export const translations = {
 
         // Hero Section
         hero: {
-            title: '2.5-room flat, 55 m²',
+            title: '2.5-room flat, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
             availability: 'Lease takeover available • Move-in: immediately to 30 September 2025',
             rooms: '2.5 rooms',
-            area: '55 m²',
+            area: '57 m²',
             manager: 'Managed by Baloise',
             features: {
                 laundry: 'Laundry room',
                 cellar: 'Storage cellar',
                 lift: 'Elevator',
                 parking: 'Parking',
+                balcony: 'Balcony',
             },
             cta: {
                 book_visit: 'Book a Visit',
@@ -223,17 +224,18 @@ export const translations = {
 
         // Hero Section
         hero: {
-            title: 'Appartement 2,5 pièces, 55 m²',
+            title: 'Appartement 2,5 pièces, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
             availability: 'Reprise de bail disponible • Entrée: immédiatement jusqu\'au 30 septembre 2025',
             rooms: '2,5 pièces',
-            area: '55 m²',
+            area: '57 m²',
             manager: 'Géré par Baloise',
             features: {
                 laundry: 'Buanderie',
                 cellar: 'Cave de stockage',
                 lift: 'Ascenseur',
                 parking: 'Parking',
+                balcony: 'Balcon',
             },
             cta: {
                 book_visit: 'Réserver une visite',
@@ -442,7 +444,8 @@ export const translations = {
                 laundry: 'Прачечная',
                 cellar: 'Подвал',
                 lift: 'Лифт',
-                parking: 'Парковка'
+                parking: 'Парковка',
+                balcony: 'Балкон',
             },
             cta: {
                 book_visit: 'Забронировать визит',
