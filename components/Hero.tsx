@@ -3,7 +3,7 @@
 import React from 'react';
 import {Button} from '@/components/ui/button';
 import {Badge} from '@/components/ui/badge';
-import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, House, Building2} from 'lucide-react';
+import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, Building2} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useLanguage} from '@/components/LanguageProvider';
 
