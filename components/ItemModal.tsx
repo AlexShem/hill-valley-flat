@@ -167,7 +167,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                             {item.original_price_chf && (
                                 <div className="mt-1">
                                     <span className="text-xs sm:text-sm text-green-600 font-medium">
-                                    Save CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}
+                                    Save CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}{" "}
                                         ({Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}% off)
                                     </span>
                                 </div>
@@ -245,7 +245,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                                         className="inline-flex items-center gap-2 text-xs sm:text-sm"
                                     >
                                         <ExternalLink size={14}/>
-                                        View Original Receipt
+                                        View Original
                                     </a>
                                 </Button>
                             </div>
