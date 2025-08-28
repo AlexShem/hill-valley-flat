@@ -42,7 +42,7 @@ export function DossierChecklist() {
                         animate={inView ? {opacity: 1, x: 0} : {}}
                         transition={{duration: 0.8, delay: 0.2}}
                     >
-                        <h3 className="text-xl font-semibold mb-6">Required Documents:</h3>
+                        <h3 className="text-xl font-semibold mb-6">{t.dossier.required_documents}</h3>
                         <div className="space-y-4">
                             {t.dossier.checklist.map((item: string, index: number) => (
                                 <motion.div
@@ -65,7 +65,7 @@ export function DossierChecklist() {
                         animate={inView ? {opacity: 1, x: 0} : {}}
                         transition={{duration: 0.8, delay: 0.4}}
                     >
-                        <h3 className="text-xl font-semibold mb-6">Official Links:</h3>
+                        <h3 className="text-xl font-semibold mb-6">{t.dossier.official_links}</h3>
                         <div className="space-y-4">
                             <Button
                                 asChild

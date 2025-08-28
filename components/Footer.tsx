@@ -17,9 +17,9 @@ export function Footer() {
                     <div>
                         <h3 className="text-xl font-semibold mb-2">Hill Valley, Lausanne</h3>
                         <p className="text-gray-400">2.5-room flat • Lease takeover & Moving sale</p>
-                        <p className="text-gray-400 mt-2 flex items-center gap-1">
-                            Built by
-                            <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-blue-300 underline">
+                        <p className="block text-gray-600 mt-2">
+                            Built with 💙 by{' '}
+                            <Button variant="link" className="p-0 h-auto text-blue-400/60 hover:text-blue-300 underline">
                                 <Link
                                     href="https://alexhem.dev"
                                     target="_blank"
@@ -30,6 +30,7 @@ export function Footer() {
                                     <ExternalLink size={14} className="inline"/>
                                 </Link>
                             </Button>
+                            {' '}using Next.js, Tailwind CSS, Supabase & Vercel.
                         </p>
                     </div>
 

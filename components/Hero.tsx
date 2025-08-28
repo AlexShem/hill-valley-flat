@@ -6,6 +6,7 @@ import {Badge} from '@/components/ui/badge';
 import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, Building2} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useLanguage} from '@/components/LanguageProvider';
+import {Card, CardContent, CardFooter} from "@/components/ui/card";
 
 export function Hero() {
     const {t} = useLanguage();
@@ -38,12 +39,22 @@ export function Hero() {
                     <h1 className="text-4xl md:text-6xl font-bold mb-4">
                         {t.hero.title}
                     </h1>
-                    <h2 className="text-xl md:text-2xl text-white/90 mb-6">
+                    <h2 className="text-xl md:text-2xl text-white/80 mb-6">
                         {t.hero.subtitle}
                     </h2>
                     <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
                         {t.hero.availability}
                     </p>
+
+                    {/* Pricing Section */}
+                    <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-lg p-4 mb-8 max-w-md md:max-w-lg lg:max-w-xl mx-auto">
+                        <div className="text-2xl md:text-3xl font-bold text-white mb-2">
+                            {t.hero.pricing.rent}
+                        </div>
+                        <div className="text-sm md:text-base text-white/80">
+                            {t.hero.pricing.parking}
+                        </div>
+                    </div>
                 </motion.div>
 
                 <motion.div
@@ -104,7 +115,7 @@ export function Hero() {
                         size="lg"
                         variant="outline"
                         onClick={() => scrollToSection('dossier')}
-                        className="px-8 py-3 text-lg text-foreground border-2 border-slate-300 hover:bg-slate-50/90 cursor-pointer"
+                        className="px-8 py-3 text-lg text-foreground border border-slate-300 hover:bg-slate-50/90 cursor-pointer"
                     >
                         {t.hero.cta.how_to_apply}
                     </Button>

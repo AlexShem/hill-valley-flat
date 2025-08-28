@@ -172,7 +172,7 @@ export function MovingSale() {
     }, []);
 
     useEffect(() => {
-        fetchItems();
+        fetchItems().catch(console.error);
     }, []);
 
     useEffect(() => {

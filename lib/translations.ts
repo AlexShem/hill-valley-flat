@@ -12,11 +12,32 @@ export const translations = {
             contact: 'Contact'
         },
 
+        // Photos
+        photos: {
+            title: 'Photo Gallery',
+            agency_setup: 'Agency Setup',
+            empty_move_in: 'Empty on Move-in',
+            captions: {
+                overview: 'Overview of the apartment',
+                living_room: 'Living room with natural light',
+                kitchen: 'Modern kitchen with dining area',
+                bedroom: 'Comfortable bedroom',
+                empty_living_room: 'Empty living room',
+                empty_kitchen: 'Empty kitchen',
+                empty_bedroom: 'Empty bedroom',
+                bathroom: 'Bathroom'
+            }
+        },
+
         // Hero Section
         hero: {
             title: '2.5-room flat, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
             availability: 'Lease takeover available • Move-in: immediately to 30 September 2025',
+            pricing: {
+                rent: '2056 CHF/month (incl. charges)',
+                parking: 'Parking: 180 CHF/month (optional)'
+            },
             rooms: '2.5 rooms',
             area: '57 m²',
             manager: 'Managed by Baloise',
@@ -110,6 +131,8 @@ export const translations = {
         // Dossier
         dossier: {
             title: 'Application Checklist & Official Links',
+            required_documents: 'Required Documents:',
+            official_links: 'Official Links:',
             checklist: [
                 'Valid ID or Swiss residence permit',
                 'Last 3 monthly salary statements',
@@ -222,11 +245,32 @@ export const translations = {
             contact: 'Contact'
         },
 
+        // Photos
+        photos: {
+            title: 'Galerie de photos',
+            agency_setup: 'Aménagement agence',
+            empty_move_in: 'Vide à l\'emménagement',
+            captions: {
+                overview: 'Vue d\'ensemble de l\'appartement',
+                living_room: 'Salon avec lumière naturelle',
+                kitchen: 'Cuisine moderne avec coin repas',
+                bedroom: 'Chambre confortable',
+                empty_living_room: 'Salon vide',
+                empty_kitchen: 'Cuisine vide',
+                empty_bedroom: 'Chambre vide',
+                bathroom: 'Salle de bain'
+            }
+        },
+
         // Hero Section
         hero: {
             title: 'Appartement 2,5 pièces, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
             availability: 'Reprise de bail disponible • Entrée: immédiatement jusqu\'au 30 septembre 2025',
+            pricing: {
+                rent: '2056 CHF/mois (charges comprises)',
+                parking: 'Parking: 180 CHF/mois (optionnel)'
+            },
             rooms: '2,5 pièces',
             area: '57 m²',
             manager: 'Géré par Baloise',
@@ -320,6 +364,8 @@ export const translations = {
         // Dossier
         dossier: {
             title: 'Liste de vérification de candidature et liens officiels',
+            required_documents: 'Documents requis:',
+            official_links: 'Liens officiels:',
             checklist: [
                 'Pièce d\'identité valide ou permis de séjour suisse',
                 '3 dernières fiches de salaire mensuelles',
@@ -432,11 +478,32 @@ export const translations = {
             contact: 'Контакт'
         },
 
+        // Photos
+        photos: {
+            title: 'Фотогалерея',
+            agency_setup: 'Обстановка агентства',
+            empty_move_in: 'Пустая при заселении',
+            captions: {
+                overview: 'Обзор квартиры',
+                living_room: 'Гостиная с естественным освещением',
+                kitchen: 'Современная кухня с обеденной зоной',
+                bedroom: 'Уютная спальня',
+                empty_living_room: 'Пустая гостиная',
+                empty_kitchen: 'Пустая кухня',
+                empty_bedroom: 'Пустая спальня',
+                bathroom: 'Ванная комната'
+            }
+        },
+
         // Hero Section
         hero: {
             title: '2,5-комнатная квартира, 55 м²',
             subtitle: 'Хилл Валли, Лозанна',
             availability: 'Передача аренды • заселение: немедленно • до: 30 сент 2025',
+            pricing: {
+                rent: '2056 CHF/месяц (включая расходы)',
+                parking: 'Парковка: 180 CHF/месяц (по желанию)'
+            },
             rooms: '2,5 комнаты',
             area: '55 м²',
             manager: 'Baloise Immobilier',
@@ -530,6 +597,8 @@ export const translations = {
         // Dossier
         dossier: {
             title: 'Чек-лист досье и официальные ссылки',
+            required_documents: 'Необходимые документы:',
+            official_links: 'Официальные ссылки:',
             checklist: [
                 'Удостоверение личности или вид на жительство',
                 'Последние 3 справки о зарплате',

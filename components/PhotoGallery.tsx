@@ -6,27 +6,15 @@ import {X, ChevronLeft, ChevronRight} from 'lucide-react';
 import {Button} from '@/components/ui/button';
 import {useInView} from 'react-intersection-observer';
 import Image from "next/image";
+import {useLanguage} from '@/components/LanguageProvider';
 
 interface Photo {
     src: string;
     caption: string;
 }
 
-const currentPhotos: Photo[] = [
-    {src: '/agency-general.jpg', caption: 'Overview of the apartment'},
-    {src: '/agency-living-room.jpg', caption: 'Living room with natural light'},
-    {src: '/agency-kitchen.jpg', caption: 'Modern kitchen with dining area'},
-    {src: '/agency-bedroom.jpg', caption: 'Comfortable bedroom'},
-];
-
-const emptyPhotos: Photo[] = [
-    {src: '/move-in-living-room.jpg', caption: 'Empty living room'},
-    {src: '/move-in-kitchen.jpg', caption: 'Empty kitchen'},
-    {src: '/move-in-bedroom.jpg', caption: 'Empty bedroom'},
-    {src: '/move-in-bathroom.jpg', caption: 'Bathroom'}
-];
-
 export function PhotoGallery() {
+    const {t} = useLanguage();
     const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [activeGallery, setActiveGallery] = useState<'current' | 'empty'>('current');
@@ -35,6 +23,20 @@ export function PhotoGallery() {
         triggerOnce: true,
         threshold: 0.1,
     });
+
+    const currentPhotos: Photo[] = [
+        {src: '/agency-general.jpg', caption: t.photos.captions.overview},
+        {src: '/agency-living-room.jpg', caption: t.photos.captions.living_room},
+        {src: '/agency-kitchen.jpg', caption: t.photos.captions.kitchen},
+        {src: '/agency-bedroom.jpg', caption: t.photos.captions.bedroom},
+    ];
+
+    const emptyPhotos: Photo[] = [
+        {src: '/move-in-living-room.jpg', caption: t.photos.captions.empty_living_room},
+        {src: '/move-in-kitchen.jpg', caption: t.photos.captions.empty_kitchen},
+        {src: '/move-in-bedroom.jpg', caption: t.photos.captions.empty_bedroom},
+        {src: '/move-in-bathroom.jpg', caption: t.photos.captions.bathroom}
+    ];
 
     const photos = activeGallery === 'current' ? currentPhotos : emptyPhotos;
 
@@ -65,7 +67,7 @@ export function PhotoGallery() {
                     className="text-center mb-12"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                        Photo Gallery
+                        {t.photos.title}
                     </h2>
 
                     <div className="flex justify-center gap-4 mb-8">
@@ -73,13 +75,13 @@ export function PhotoGallery() {
                             variant={activeGallery === 'current' ? 'default' : 'outline'}
                             onClick={() => setActiveGallery('current')}
                         >
-                            Agency Setup
+                            {t.photos.agency_setup}
                         </Button>
                         <Button
                             variant={activeGallery === 'empty' ? 'default' : 'outline'}
                             onClick={() => setActiveGallery('empty')}
                         >
-                            Empty on Move-in
+                            {t.photos.empty_move_in}
                         </Button>
                     </div>
                 </motion.div>

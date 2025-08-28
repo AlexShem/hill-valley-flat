@@ -20,10 +20,10 @@ export function LanguageToggle({className = ''}: { className?: string }) {
             {languages.map(({code, label}) => (
                 <Button
                     key={code}
-                    variant={language === code ? 'default' : 'ghost'}
+                    variant={language === code ? 'secondary' : 'ghost'}
                     size="sm"
                     onClick={() => setLanguage(code)}
-                    className="px-2 py-1 h-8 text-sm"
+                    className="px-2 py-1 h-8 text-sm border border-gray-700 rounded-lg"
                 >
                     {label}
                 </Button>
