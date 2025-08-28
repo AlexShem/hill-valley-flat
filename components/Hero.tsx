@@ -6,7 +6,6 @@ import {Badge} from '@/components/ui/badge';
 import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, Building2} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useLanguage} from '@/components/LanguageProvider';
-import {Card, CardContent, CardFooter} from "@/components/ui/card";
 
 export function Hero() {
     const {t} = useLanguage();
