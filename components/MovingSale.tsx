@@ -506,7 +506,7 @@ export function MovingSale() {
                             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                                     size={20}/>
                             <Input
-                                placeholder="Search items..."
+                                placeholder={t.sale.search_placeholder}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 className="pl-10"
@@ -660,19 +660,20 @@ export function MovingSale() {
                                             <div className="hidden md:block space-y-1 mb-3 text-xs text-gray-600">
                                                 {item.dimensions_cm && (
                                                     <div className="flex items-center gap-2">
-                                                        <span className="text-gray-400">Dimensions:</span>
+                                                        {/*<span className="text-gray-400">Dimensions:</span>*/}
+                                                        <span className="text-gray-400">{t.sale.dimensions_label}</span>
                                                         <span>{item.dimensions_cm}</span>
                                                     </div>
                                                 )}
                                                 {item.colour && (
                                                     <div className="flex items-center gap-2">
-                                                        <span className="text-gray-400">Color:</span>
+                                                        <span className="text-gray-400">{t.sale.color_label}</span>
                                                         <span>{item.colour}</span>
                                                     </div>
                                                 )}
                                                 {item.weight_kg && (
                                                     <div className="flex items-center gap-2">
-                                                        <span className="text-gray-400">Weight:</span>
+                                                        <span className="text-gray-400">{t.sale.weight_label}</span>
                                                         <span>{item.weight_kg} kg</span>
                                                     </div>
                                                 )}
@@ -681,7 +682,8 @@ export function MovingSale() {
                                             <div className="flex items-center justify-between">
                                                 <div className="flex-1">
                                                     <p className={`font-bold text-sm md:text-lg mb-1 ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
-                                                        CHF {item.ask_price_chf.toFixed(2)}
+                                                        {/*CHF {item.ask_price_chf.toFixed(2)}*/}
+                                                        {item.ask_price_chf === 0 ? t.sale.free : `CHF ${item.ask_price_chf.toFixed(2)}`}
                                                     </p>
                                                     {item.original_price_chf && (
                                                         <div className="space-y-1">
@@ -689,7 +691,7 @@ export function MovingSale() {
                                                                 CHF {item.original_price_chf.toFixed(2)}
                                                             </p>
                                                             <p className="text-xs text-green-600 font-medium">
-                                                                Save {Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}%
+                                                                {t.sale.save_label} {Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}%
                                                             </p>
                                                         </div>
                                                     )}

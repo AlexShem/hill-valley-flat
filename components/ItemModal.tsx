@@ -156,7 +156,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                             <div className="flex items-baseline gap-2 lg:gap-3">
                                 <span
                                     className={`text-xl lg:text-3xl font-bold ${item.status === 'sold' ? 'line-through text-gray-500' : 'text-green-600'}`}>
-                                CHF {item.ask_price_chf.toFixed(2)}
+                                {item.ask_price_chf === 0 ? t.sale.free : `CHF ${item.ask_price_chf.toFixed(2)}`}
                                 </span>
                                 {item.original_price_chf && (
                                     <span
@@ -167,7 +167,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                             {item.original_price_chf && (
                                 <div className="mt-1">
                                     <span className="text-xs sm:text-sm text-green-600 font-medium">
-                                    Save CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}{" "}
+                                    {t.sale.save_label} CHF {(item.original_price_chf - item.ask_price_chf).toFixed(2)}{" "}
                                         ({Math.round(((item.original_price_chf - item.ask_price_chf) / item.original_price_chf) * 100)}% off)
                                     </span>
                                 </div>
@@ -186,25 +186,25 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2 lg:gap-3 text-xs sm:text-sm">
                                 {item.dimensions_cm && (
                                     <div>
-                                        <span className="font-medium text-gray-700">Dimensions:</span>
+                                        <span className="font-medium text-gray-700">{t.sale.dimensions_label}</span>
                                         <span className="ml-2">{item.dimensions_cm}</span>
                                     </div>
                                 )}
                                 {item.colour && (
                                     <div>
-                                        <span className="font-medium text-gray-700">Color:</span>
+                                        <span className="font-medium text-gray-700">{t.sale.color_label}</span>
                                         <span className="ml-2">{item.colour}</span>
                                     </div>
                                 )}
                                 {item.weight_kg && (
                                     <div>
-                                        <span className="font-medium text-gray-700">Weight:</span>
-                                        <span className="ml-2">{item.weight_kg} kg</span>
+                                        <span className="font-medium text-gray-700">{t.sale.weight_label}</span>
+                                        <span className="ml-2">{item.weight_kg} {t.sale.weight_kg_label}</span>
                                     </div>
                                 )}
                                 {item.purchase_date && (
                                     <div>
-                                        <span className="font-medium text-gray-700">Purchase Date:</span>
+                                        <span className="font-medium text-gray-700">{t.sale.item.purchase_date_label}:</span>
                                         <span className="ml-2">{formatDate(item.purchase_date)}</span>
                                     </div>
                                 )}
@@ -214,7 +214,7 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                         {/* Notes */}
                         {item.notes && (
                             <div>
-                                <h4 className="font-medium text-gray-700 mb-1 sm:mb-2 text-sm">Notes:</h4>
+                                <h4 className="font-medium text-gray-700 mb-1 sm:mb-2 text-sm">{t.sale.item.notes}:</h4>
                                 <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{item.notes}</p>
                             </div>
                         )}
@@ -222,13 +222,13 @@ export function ItemModal({item, isOpen, onClose}: ItemModalProps) {
                         {/* Pickup Information */}
                         {(item.pickup_window_start || item.pickup_window_end) && (
                             <div className="bg-blue-50 border border-blue-200 rounded-lg p-2 sm:p-3 lg:p-4">
-                                <h4 className="font-medium text-blue-900 mb-1 sm:mb-2 text-sm">Pickup Window:</h4>
+                                <h4 className="font-medium text-blue-900 mb-1 sm:mb-2 text-sm">{t.sale.item.pickup_window}:</h4>
                                 <div className="text-xs sm:text-sm text-blue-800">
                                     {item.pickup_window_start && (
-                                        <div>Start: {new Date(item.pickup_window_start).toLocaleString()}</div>
+                                        <div>{t.sale.item.pickup_window_start}: {new Date(item.pickup_window_start).toLocaleString()}</div>
                                     )}
                                     {item.pickup_window_end && (
-                                        <div>End: {new Date(item.pickup_window_end).toLocaleString()}</div>
+                                        <div>{t.sale.item.pickup_window_end}: {new Date(item.pickup_window_end).toLocaleString()}</div>
                                     )}
                                 </div>
                             </div>
