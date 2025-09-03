@@ -113,9 +113,9 @@ export function PhotoGallery() {
                 <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
                     <div className="relative max-w-4xl max-h-full">
                         <Button
-                            variant="ghost"
+                            variant="outline"
                             size="icon"
-                            className="absolute top-4 right-4 z-10 text-white hover:bg-white/20"
+                            className="absolute top-4 right-4 z-10 text-foreground"
                             onClick={() => setSelectedPhoto(null)}
                         >
                             <X size={24}/>

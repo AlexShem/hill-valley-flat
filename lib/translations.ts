@@ -533,7 +533,7 @@ export const translations = {
         // Hero Section
         hero: {
             title: '2,5-комнатная квартира, 57 м²',
-            subtitle: 'Хилл Валли, Лозанна',
+            subtitle: 'Hill Valley, Лозанна',
             availability: 'Передача аренды • заселение: немедленно • до: 30 сент 2025',
             pricing: {
                 rent: '2056 CHF/месяц (включая расходы)',
