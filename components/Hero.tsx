@@ -19,6 +19,7 @@ export function Hero() {
 
     return (
         <section
+            id="home"
             className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100"
             style={{
                 backgroundImage: "url('/hill-valley-hero.png')",

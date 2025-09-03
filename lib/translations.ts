@@ -2,6 +2,7 @@ export const translations = {
     en: {
         // Navigation
         nav: {
+            home: 'Home',
             overview: 'Overview',
             photos: 'Photos',
             items: 'Items',
@@ -251,6 +252,7 @@ export const translations = {
     fr: {
         // Navigation
         nav: {
+            home: 'Accueil',
             overview: 'Aperçu',
             photos: 'Photos',
             items: 'Objets',
@@ -500,10 +502,11 @@ export const translations = {
     ru: {
         // Navigation
         nav: {
+            home: 'Главная',
             overview: 'Обзор',
             photos: 'Фото',
             items: 'Вещи',
-            apply: 'Как подать заявку',
+            apply: 'Подать заявку',
             location: 'Местоположение',
             visit: 'Визит',
             faq: 'Вопросы',
