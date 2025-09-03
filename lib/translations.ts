@@ -532,7 +532,7 @@ export const translations = {
 
         // Hero Section
         hero: {
-            title: '2,5-комнатная квартира, 55 м²',
+            title: '2,5-комнатная квартира, 57 м²',
             subtitle: 'Хилл Валли, Лозанна',
             availability: 'Передача аренды • заселение: немедленно • до: 30 сент 2025',
             pricing: {
@@ -540,7 +540,7 @@ export const translations = {
                 parking: 'Парковка: 180 CHF/месяц (по желанию)'
             },
             rooms: '2,5 комнаты',
-            area: '55 м²',
+            area: '57 м²',
             manager: 'Baloise Immobilier',
             features: {
                 laundry: 'Прачечная',
