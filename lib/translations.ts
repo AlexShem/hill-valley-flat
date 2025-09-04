@@ -64,7 +64,7 @@ export const translations = {
                 'Denner & Migros supermarkets steps away',
                 'Quiet, sheltered residential setting',
                 'Modern 2022 building (energy-efficient)',
-                'Light-filled rooms with smart storage'
+                'Light-filled rooms with storage'
             ]
         },
 
@@ -154,7 +154,7 @@ export const translations = {
                 'Valid ID or Swiss residence permit',
                 'Last 3 monthly salary statements',
                 'Debt enforcement office extract (max. 3 months old)',
-                'Personal liability insurance certificate',
+                'Household insurance certificate',
                 'Completed Baloise application form and any additional requirements'
             ],
             links: {
@@ -174,7 +174,7 @@ export const translations = {
         // Visit Booking
         booking: {
             title: 'Schedule Your Visit',
-            note: '15-20 minute viewing slots available. Come prepared with questions.'
+            note: '20-30 minute viewing slots available. Come prepared with questions.'
         },
 
         // FAQ
@@ -314,7 +314,7 @@ export const translations = {
                 'Denner et Migros à deux pas',
                 'Quartier calme et protégé',
                 'Immeuble moderne (construction 2022, économe en énergie)',
-                'Pièces lumineuses avec rangements optimisés'
+                'Pièces lumineuses avec rangements'
             ]
         },
 
@@ -404,7 +404,7 @@ export const translations = {
                 'Pièce d\'identité valide ou permis de séjour suisse',
                 '3 dernières fiches de salaire mensuelles',
                 'Extrait de l\'office des poursuites (max. 3 mois)',
-                'Attestation d\'assurance responsabilité civile',
+                'Attestation d\'assurance ménage',
                 'Formulaire de candidature Baloise complété et exigences supplémentaires'
             ],
             links: {
@@ -424,7 +424,7 @@ export const translations = {
         // Visit Booking
         booking: {
             title: 'Planifiez votre visite',
-            note: 'Créneaux de visite de 15-20 minutes disponibles. Venez préparé avec vos questions.'
+            note: 'Créneaux de visite de 20-30 minutes disponibles. Venez préparé avec vos questions.'
         },
 
         // FAQ
@@ -564,7 +564,7 @@ export const translations = {
                 'Супермаркеты Denner и Migros рядом',
                 'Тихое, защищённое жилое окружение',
                 'Современное здание 2022 года (энергоэффективное)',
-                'Светлые помещения и продуманное хранение'
+                'Светлые помещения и место для хранения'
             ]
         },
 
@@ -654,7 +654,7 @@ export const translations = {
                 'Удостоверение личности или вид на жительство',
                 'Последние 3 справки о зарплате',
                 'Справка из офиса исполнения (≤ 3 месяцев)',
-                'Справка о страховании гражданской ответственности',
+                'Сертификат страхования домашнего хозяйства',
                 'Анкета агентства и дополнительные документы, требуемые Baloise'
             ],
             links: {
@@ -674,7 +674,7 @@ export const translations = {
         // Visit Booking
         booking: {
             title: 'Забронировать визит',
-            note: 'Слоты по 15–20 мин. Приносите свои вопросы.'
+            note: 'Слоты по 20-30 мин. Приносите свои вопросы.'
         },
 
         // FAQ

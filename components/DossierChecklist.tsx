@@ -16,9 +16,8 @@ export function DossierChecklist() {
 
     // Placeholder URLs - these would be replaced with actual links
     const links = {
-        baloise: 'https://www.baloise.ch/en/private-customers/real-estate.html',
+        baloise: 'https://flatfox.ch/d/dcazcq/',
         poursuites: 'https://www.vd.ch/prestation/demander-un-extrait-du-registre-des-poursuites-pour-soi-meme',
-        insurance: 'https://www.baloise.ch/en/private-customers/insurance/liability.html'
     };
 
     return (
@@ -86,18 +85,6 @@ export function DossierChecklist() {
                             >
                                 <a href={links.poursuites} target="_blank" rel="noopener noreferrer">
                                     {t.dossier.links.poursuites}
-                                    <ExternalLink size={20}/>
-                                </a>
-                            </Button>
-
-                            <Button
-                                asChild
-                                variant="outline"
-                                className="w-full justify-between"
-                                size="lg"
-                            >
-                                <a href={links.insurance} target="_blank" rel="noopener noreferrer">
-                                    {t.dossier.links.insurance}
                                     <ExternalLink size={20}/>
                                 </a>
                             </Button>
