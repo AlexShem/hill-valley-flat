@@ -29,9 +29,12 @@ export function DossierChecklist() {
                     transition={{duration: 0.8}}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">
                         {t.dossier.title}
                     </h2>
+                    <p className="text-sm md:text-base text-slate-600 font-mono mb-4">
+                        {t.hero.reference}
+                    </p>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-8">

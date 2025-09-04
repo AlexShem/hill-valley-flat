@@ -17,6 +17,7 @@ export function Footer() {
                     <div>
                         <h3 className="text-xl font-semibold mb-2">Hill Valley, Lausanne</h3>
                         <p className="text-gray-400">2.5-room flat • Lease takeover & Moving sale</p>
+                        <p className="text-sm text-gray-500 font-mono mt-1">{t.hero.reference}</p>
                         <p className="block text-gray-600 mt-2">
                             Built with 💙 by{' '}
                             <Button variant="link" className="p-0 h-auto text-blue-400/60 hover:text-blue-300 underline">

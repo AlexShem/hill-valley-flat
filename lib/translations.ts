@@ -34,6 +34,7 @@ export const translations = {
         hero: {
             title: '2.5-room flat, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
+            reference: 'Reference: 6560.01.0505',
             availability: 'Lease takeover available • Move-in: immediately to 30 September 2025',
             pricing: {
                 rent: '2056 CHF/month (incl. charges)',
@@ -284,6 +285,7 @@ export const translations = {
         hero: {
             title: 'Appartement 2,5 pièces, 57 m²',
             subtitle: 'Hill Valley, Lausanne',
+            reference: 'Référence: 6560.01.0505',
             availability: 'Reprise de bail disponible • Entrée: immédiatement jusqu\'au 30 septembre 2025',
             pricing: {
                 rent: '2056 CHF/mois (charges comprises)',
@@ -534,6 +536,7 @@ export const translations = {
         hero: {
             title: '2,5-комнатная квартира, 57 м²',
             subtitle: 'Hill Valley, Лозанна',
+            reference: 'Номер: 6560.01.0505',
             availability: 'Передача аренды • заселение: немедленно • до: 30 сент 2025',
             pricing: {
                 rent: '2056 CHF/месяц (включая расходы)',

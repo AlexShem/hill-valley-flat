@@ -39,9 +39,12 @@ export function Hero() {
                     <h1 className="text-4xl md:text-6xl font-bold mb-4">
                         {t.hero.title}
                     </h1>
-                    <h2 className="text-xl md:text-2xl text-white/80 mb-6">
+                    <h2 className="text-xl md:text-2xl text-white/80 mb-1">
                         {t.hero.subtitle}
                     </h2>
+                    <p className="text-sm md:text-base text-white/70 mb-6 font-mono">
+                        {t.hero.reference}
+                    </p>
                     <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
                         {t.hero.availability}
                     </p>
