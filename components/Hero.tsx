@@ -3,7 +3,7 @@
 import React from 'react';
 import {Button} from '@/components/ui/button';
 import {Badge} from '@/components/ui/badge';
-import {Home, Square, Building, Shirt, Package, ArrowUp, ParkingSquare, Building2} from 'lucide-react';
+import {ArrowUp, ArrowUpDown, Building, Building2, Home, Package, ParkingSquare, Shirt, Square} from 'lucide-react';
 import {motion} from 'framer-motion';
 import {useLanguage} from '@/components/LanguageProvider';
 
@@ -50,7 +50,8 @@ export function Hero() {
                     </p>
 
                     {/* Pricing Section */}
-                    <div className="bg-white/10 border border-white/20 backdrop-blur-md rounded-lg p-4 mb-8 max-w-md md:max-w-lg lg:max-w-xl mx-auto">
+                    <div
+                        className="bg-white/10 border border-white/20 backdrop-blur-md rounded-lg p-4 mb-8 max-w-md md:max-w-lg lg:max-w-xl mx-auto">
                         <div className="text-2xl md:text-3xl font-bold text-white mb-2">
                             {t.hero.pricing.rent}
                         </div>
@@ -87,7 +88,7 @@ export function Hero() {
                         {t.hero.features.cellar}
                     </Badge>
                     <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
-                        <ArrowUp size={16}/>
+                        <ArrowUpDown size={16}/>
                         {t.hero.features.lift}
                     </Badge>
                     <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
@@ -97,6 +98,10 @@ export function Hero() {
                     <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
                         <Building2 size={16}/>
                         {t.hero.features.balcony}
+                    </Badge>
+                    <Badge variant="secondary" className="flex items-center gap-2 px-4 py-2">
+                        <ArrowUp size={16}/>
+                        {t.hero.features.floor}
                     </Badge>
                 </motion.div>
 

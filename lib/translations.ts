@@ -49,6 +49,7 @@ export const translations = {
                 lift: 'Elevator',
                 parking: 'Parking',
                 balcony: 'Balcony',
+                floor: '5th Floor',
             },
             cta: {
                 book_visit: 'Book a Visit',
@@ -300,6 +301,7 @@ export const translations = {
                 lift: 'Ascenseur',
                 parking: 'Parking',
                 balcony: 'Balcon',
+                floor: '5ème étage',
             },
             cta: {
                 book_visit: 'Réserver une visite',
@@ -551,6 +553,7 @@ export const translations = {
                 lift: 'Лифт',
                 parking: 'Парковка',
                 balcony: 'Балкон',
+                floor: '5-й этаж',
             },
             cta: {
                 book_visit: 'Забронировать визит',
