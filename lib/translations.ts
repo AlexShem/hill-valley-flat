@@ -103,7 +103,8 @@ export const translations = {
             sort: {
                 price_asc: 'Price: Low to High',
                 price_desc: 'Price: High to Low',
-                newest: 'Newest First'
+                newest: 'Newest',
+                featured: 'Featured',
             },
             item: {
                 original_price: 'Original price',
@@ -355,7 +356,8 @@ export const translations = {
             sort: {
                 price_asc: 'Prix: du plus bas au plus élevé',
                 price_desc: 'Prix: du plus élevé au plus bas',
-                newest: 'Plus récents en premier'
+                newest: 'Plus récents',
+                featured: 'En vedette',
             },
             item: {
                 original_price: 'Prix d\'origine',
@@ -607,7 +609,8 @@ export const translations = {
             sort: {
                 price_asc: 'Цена: по возрастанию',
                 price_desc: 'Цена: по убыванию',
-                newest: 'Сначала новые'
+                newest: 'Сначала новые',
+                featured: 'Рекомендуемые',
             },
             item: {
                 original_price: 'Изначальная цена',

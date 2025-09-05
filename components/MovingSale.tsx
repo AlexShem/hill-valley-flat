@@ -34,7 +34,7 @@ import {useIsMobile} from '@/hooks/use-mobile';
 import Image from 'next/image';
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 
-type SortOption = 'newest' | 'oldest' | 'price_asc' | 'price_desc';
+type SortOption = 'newest' | 'featured' | 'price_asc' | 'price_desc';
 
 export function MovingSale() {
     const {t} = useLanguage();
@@ -47,7 +47,7 @@ export function MovingSale() {
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
     const [statusFilter, setStatusFilter] = useState<ItemStatus | 'all'>('all');
     const [conditionFilter, setConditionFilter] = useState<ItemCondition | 'all'>('all');
-    const [sortBy, setSortBy] = useState<SortOption>('oldest');
+    const [sortBy, setSortBy] = useState<SortOption>('featured');
     const [selectedItem, setSelectedItem] = useState<Item | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -148,7 +148,7 @@ export function MovingSale() {
                     return b.ask_price_chf - a.ask_price_chf;
                 case 'newest':
                     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-                case 'oldest':
+                case 'featured':
                 default:
                     return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
             }
@@ -596,6 +596,7 @@ export function MovingSale() {
                             <SelectContent>
                                 <SelectGroup>
                                     <SelectLabel>{t.sale.filters.sort}</SelectLabel>
+                                    <SelectItem value="featured">{t.sale.sort.featured}</SelectItem>
                                     <SelectItem value="newest">{t.sale.sort.newest}</SelectItem>
                                     <SelectItem value="price_asc">{t.sale.sort.price_asc}</SelectItem>
                                     <SelectItem value="price_desc">{t.sale.sort.price_desc}</SelectItem>
