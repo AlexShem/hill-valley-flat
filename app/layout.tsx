@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         template: '%s | Hill Valley Flat',
         default: '2.5-room Flat for Lease Takeover | Hill Valley, Lausanne'
     },
-    description: '2.5-room apartment (55m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025. Quiet, bright, excellent transport links to M2 metro.',
+    description: '2.5-room apartment (57m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025. Quiet, bright, excellent transport links to M1 metro.',
     keywords: [
         'apartment',
         'lease takeover',
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: '/',
         title: '2.5-room Flat for Lease Takeover | Hill Valley, Lausanne',
-        description: '2.5-room apartment (55m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025.',
+        description: '2.5-room apartment (57m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025.',
         siteName: 'Hill Valley Flat',
         images: [
             {
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: '2.5-room Flat for Lease Takeover | Hill Valley, Lausanne',
-        description: '2.5-room apartment (55m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025.',
+        description: '2.5-room apartment (57m²) available for lease takeover in Hill Valley, Lausanne. Immediate availability through September 2025.',
         images: ['/hill-valley-hero.png']
     },
     robots: {
