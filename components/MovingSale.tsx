@@ -1,8 +1,8 @@
 'use client';
 
-import React, {useState, useEffect, useCallback, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {motion} from 'framer-motion';
-import {Search, Eye, Banknote} from 'lucide-react';
+import {Banknote, Eye, Search} from 'lucide-react';
 import {Btc, Eth, Sol} from 'react-pay-icons/crypto'
 import {Button} from '@/components/ui/button';
 import {Input} from '@/components/ui/input';
@@ -27,14 +27,14 @@ import {
     PaginationPrevious,
 } from '@/components/ui/pagination';
 import {useLanguage} from '@/components/LanguageProvider';
-import {supabase, Item, ItemStatus, ItemCondition} from '@/lib/supabase';
+import {Item, ItemCondition, ItemStatus, supabase} from '@/lib/supabase';
 import {useInView} from 'react-intersection-observer';
 import {ItemModal} from '@/components/ItemModal';
 import {useIsMobile} from '@/hooks/use-mobile';
 import Image from 'next/image';
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
 
-type SortOption = 'newest' | 'price_asc' | 'price_desc';
+type SortOption = 'newest' | 'oldest' | 'price_asc' | 'price_desc';
 
 export function MovingSale() {
     const {t} = useLanguage();
@@ -47,7 +47,7 @@ export function MovingSale() {
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
     const [statusFilter, setStatusFilter] = useState<ItemStatus | 'all'>('all');
     const [conditionFilter, setConditionFilter] = useState<ItemCondition | 'all'>('all');
-    const [sortBy, setSortBy] = useState<SortOption>('newest');
+    const [sortBy, setSortBy] = useState<SortOption>('oldest');
     const [selectedItem, setSelectedItem] = useState<Item | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -147,8 +147,10 @@ export function MovingSale() {
                 case 'price_desc':
                     return b.ask_price_chf - a.ask_price_chf;
                 case 'newest':
-                default:
                     return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+                case 'oldest':
+                default:
+                    return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
             }
         });
 
@@ -415,7 +417,8 @@ export function MovingSale() {
                         <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap">
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Banknote size={24}/>
                                     </div>
                                 </TooltipTrigger>
@@ -426,7 +429,8 @@ export function MovingSale() {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Image
                                             src="/twint.svg"
                                             width={40}
@@ -443,7 +447,8 @@ export function MovingSale() {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Image
                                             src="/revolut-logo-dark.svg"
                                             width={40}
@@ -460,7 +465,8 @@ export function MovingSale() {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Btc style={{width: 40, height: 40}}/>
                                     </div>
                                 </TooltipTrigger>
@@ -471,7 +477,8 @@ export function MovingSale() {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Eth style={{width: 40, height: 40}}/>
                                     </div>
                                 </TooltipTrigger>
@@ -482,7 +489,8 @@ export function MovingSale() {
 
                             <Tooltip>
                                 <TooltipTrigger asChild>
-                                    <div className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
+                                    <div
+                                        className="h-12 w-12 rounded-lg hover:scale-105 transition-all cursor-pointer flex items-center justify-center shadow-sm">
                                         <Sol style={{width: 40, height: 40}}/>
                                     </div>
                                 </TooltipTrigger>
