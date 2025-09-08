@@ -26,7 +26,9 @@ export const translations = {
                 empty_living_room: 'Empty living room',
                 empty_kitchen: 'Empty kitchen',
                 empty_bedroom: 'Empty bedroom',
-                bathroom: 'Bathroom'
+                bathroom: 'Bathroom',
+                floor_plan: 'Floor plan',
+                outdoor_view: 'Outdoor view',
             }
         },
 
@@ -279,7 +281,9 @@ export const translations = {
                 empty_living_room: 'Salon vide',
                 empty_kitchen: 'Cuisine vide',
                 empty_bedroom: 'Chambre vide',
-                bathroom: 'Salle de bain'
+                bathroom: 'Salle de bain',
+                floor_plan: 'Plan d\'étage',
+                outdoor_view: 'Vue extérieure',
             }
         },
 
@@ -532,7 +536,9 @@ export const translations = {
                 empty_living_room: 'Пустая гостиная',
                 empty_kitchen: 'Пустая кухня',
                 empty_bedroom: 'Пустая спальня',
-                bathroom: 'Ванная комната'
+                bathroom: 'Ванная комната',
+                floor_plan: 'План этажа',
+                outdoor_view: 'Вид снаружи',
             }
         },
 

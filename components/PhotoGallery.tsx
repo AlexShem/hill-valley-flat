@@ -29,13 +29,17 @@ export function PhotoGallery() {
         {src: '/agency-living-room.jpg', caption: t.photos.captions.living_room},
         {src: '/agency-kitchen.jpg', caption: t.photos.captions.kitchen},
         {src: '/agency-bedroom.jpg', caption: t.photos.captions.bedroom},
+        {src: '/plan.png', caption: t.photos.captions.floor_plan},
+        {src: '/outdoor_view.png', caption: t.photos.captions.outdoor_view},
     ];
 
     const emptyPhotos: Photo[] = [
         {src: '/move-in-living-room.jpg', caption: t.photos.captions.empty_living_room},
         {src: '/move-in-kitchen.jpg', caption: t.photos.captions.empty_kitchen},
         {src: '/move-in-bedroom.jpg', caption: t.photos.captions.empty_bedroom},
-        {src: '/move-in-bathroom.jpg', caption: t.photos.captions.bathroom}
+        {src: '/move-in-bedroom-2.jpg', caption: t.photos.captions.empty_bedroom},
+        {src: '/move-in-bathroom.jpg', caption: t.photos.captions.bathroom},
+        {src: '/outdoor_view_real.jpg', caption: t.photos.captions.outdoor_view},
     ];
 
     const photos = activeGallery === 'current' ? currentPhotos : emptyPhotos;
@@ -97,8 +101,8 @@ export function PhotoGallery() {
                             onClick={() => openLightbox(photo, index)}
                         >
                             <Image
-                                width="1000"
-                                height="1000"
+                                width="200"
+                                height="200"
                                 src={photo.src}
                                 alt={photo.caption}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
@@ -111,7 +115,7 @@ export function PhotoGallery() {
             {/* Lightbox */}
             {selectedPhoto && (
                 <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4">
-                    <div className="relative max-w-4xl max-h-full">
+                    <div className="relative w-full h-full flex flex-col max-w-6xl">
                         <Button
                             variant="outline"
                             size="icon"
@@ -139,17 +143,23 @@ export function PhotoGallery() {
                             <ChevronRight size={24}/>
                         </Button>
 
-                        <Image
-                            width="1000"
-                            height="1000"
-                            src={selectedPhoto.src}
-                            alt={selectedPhoto.caption}
-                            className="max-w-full max-h-full object-contain rounded-lg"
-                        />
+                        {/* Image container with proper height constraint */}
+                        <div className="flex-1 flex items-center justify-center min-h-0 mb-4">
+                            <Image
+                                width="1200"
+                                height="1200"
+                                src={selectedPhoto.src}
+                                alt={selectedPhoto.caption}
+                                className="max-w-full max-h-full object-contain rounded-lg"
+                            />
+                        </div>
 
-                        <p className="text-white text-center mt-4 text-lg">
-                            {selectedPhoto.caption}
-                        </p>
+                        {/* Caption at bottom */}
+                        <div className="flex-shrink-0 pb-4">
+                            <p className="text-white text-center text-lg">
+                                {selectedPhoto.caption}
+                            </p>
+                        </div>
                     </div>
                 </div>
             )}

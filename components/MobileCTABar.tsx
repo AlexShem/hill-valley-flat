@@ -16,7 +16,7 @@ export function MobileCTABar() {
     };
 
     return (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 border-t border-gray-200 md:hidden">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 border-t border-gray-200 md:hidden">
             <div className="w-full max-w-full px-3 py-3">
                 <div className="grid grid-cols-4 gap-1 max-w-full">
                     <Button
