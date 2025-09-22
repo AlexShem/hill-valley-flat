@@ -3,6 +3,8 @@ import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
 import React from "react";
 import {Analytics} from "@vercel/analytics/next";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertTriangle } from "lucide-react";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -96,9 +98,17 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body
+                <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+            <Alert variant="destructive" className="fixed top-0 z-50 w-full rounded-none border-x-0 border-t-0 flex justify-center">
+                <div className="flex items-center gap-2">
+                    <AlertTriangle className="h-4 w-4" />
+                    <AlertDescription className="text-center text-lg">
+                        This flat is no longer available for lease takeover.
+                    </AlertDescription>
+                </div>
+            </Alert>
         {children}
         <Analytics/>
         </body>
